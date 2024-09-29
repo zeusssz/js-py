@@ -4,9 +4,9 @@ from translator import read_js_file, translate_js_to_py, write_py_file
 
 def validate_path(file_path):
     if not os.path.exists(file_path):
-        raise ValueError(f"The file {file_path} does not exist.")
+        raise ValueError(f"The file '{file_path}' does not exist.")
     if not os.path.isfile(file_path):
-        raise ValueError(f"The path {file_path} is not a file.")
+        raise ValueError(f"The path '{file_path}' is not a valid file.")
 
 def main():
     parser = argparse.ArgumentParser(description='Translate JavaScript code to Python.')
@@ -14,12 +14,16 @@ def main():
     parser.add_argument('output_file', help='Path to the output Python file')
     
     args = parser.parse_args()
-    
     validate_path(args.input_file)
     
-    js_code = read_js_file(args.input_file)
-    py_code = translate_js_to_py(js_code)
-    write_py_file(args.output_file, py_code)
+    try:
+        js_code = read_js_file(args.input_file)
+        py_code = translate_js_to_py(js_code)
+        write_py_file(args.output_file, py_code)
+        print(f"Translation complete! Python code saved to '{args.output_file}'.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 if __name__ == '__main__':
     main()
