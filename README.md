@@ -1,6 +1,3 @@
-Your `README.md` looks great! Here's a final version with minor formatting tweaks for clarity:
-
-```markdown
 # JavaScript to Python Translator
 
 This project is a simple tool that translates JavaScript code into Python. It aims to provide a basic conversion for common JavaScript constructs, making it easier for developers to transition between the two languages.
